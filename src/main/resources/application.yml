@@ -1,0 +1,14 @@
+
+spring:
+  datasource:
+    password: Evis
+    url: jdbc:postgresql://localhost:9003/db
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+      show_sql: true
