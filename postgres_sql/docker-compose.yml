@@ -1,17 +1,18 @@
 version: '3'
 services:
   db:
+    container_name: postgres_10_db
     image: postgres:10
     volumes:
-       - db-data:/home/evis/Evis/docker/postgres_sql/data
+       - db-data:./data
     ports: 
-      - "9003:5432"
+      - "9005:5432"
     environment:
       POSTGRES_DB: "db"
       POSTGRES_HOST_AUTH_METHOD: "trust"
 
   pgadmin:
-    container_name: pgadmin4_container
+    container_name: pgadmin4
     image: dpage/pgadmin4:6.4
     restart: always
     environment:
