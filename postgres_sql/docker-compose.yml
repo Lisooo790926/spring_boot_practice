@@ -4,8 +4,8 @@ services:
     container_name: postgres_10_db
     image: postgres:10
     volumes:
-       - db-data:./data
-    ports: 
+      - db-data:/ta
+    ports:
       - "9005:5432"
     environment:
       POSTGRES_DB: "db"
