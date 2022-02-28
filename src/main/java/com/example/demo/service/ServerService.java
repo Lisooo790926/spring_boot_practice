@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public interface ServerService {
 
-    Server create(Server server);
+    Server create(Server server) throws InterruptedException;
     Server ping(String ipAddress) throws IOException;
     Collection<Server> list(int limit);
     Server get(Long id);

@@ -24,9 +24,10 @@ public class ServerServiceImpl implements ServerService {
     private final ServerRepo serverRepo;
 
     @Override
-    public Server create(Server server) {
+    public Server create(Server server) throws InterruptedException {
         log.info("saving new server: {}", server.getName());
         server.setImageUrl(setServerImageUrl());
+        Thread.sleep(1000);
         return serverRepo.save(server);
     }
 

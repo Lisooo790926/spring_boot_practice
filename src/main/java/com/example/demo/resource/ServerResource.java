@@ -10,12 +10,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import static java.time.LocalDateTime.now;
@@ -56,16 +56,28 @@ public class ServerResource {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Response> pingServer(@RequestBody @Valid Server server) throws IOException {
-        return ResponseEntity.ok(
-                Response.builder()
-                        .timeStamp(now())
-                        .data(Map.of("server", serverService.create(server)))
-                        .message(server.getStatus() == Status.SERVER_UP ? "Ping success" : "Ping failed")
-                        .status(HttpStatus.CREATED)
-                        .statusCode(HttpStatus.CREATED.value())
-                        .build()
-        );
+    public ResponseEntity<Response> pingServer(@RequestBody Server server) throws IOException, InterruptedException {
+        try {
+            return ResponseEntity.ok(
+                    Response.builder()
+                            .timeStamp(now())
+                            .data(Map.of("server", serverService.create(server)))
+                            .message(server.getStatus() == Status.SERVER_UP ? "Ping success" : "Ping failed")
+                            .status(HttpStatus.CREATED)
+                            .statusCode(HttpStatus.CREATED.value())
+                            .build()
+            );
+        } catch (Exception e) {
+            return ResponseEntity.of(Optional.of(
+                    Response.builder()
+                            .timeStamp(now())
+                            .data(Map.of("error", e.getMessage()))
+                            .status(HttpStatus.BAD_REQUEST)
+                            .statusCode(HttpStatus.BAD_REQUEST.value())
+                            .build()
+                    )
+            );
+        }
     }
 
     @GetMapping("/get/{id}")
