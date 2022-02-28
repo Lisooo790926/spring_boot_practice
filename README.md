@@ -30,13 +30,12 @@ Get more understanding in Spring Boot
       );
    ```
    
-### DB in Docker 
-
-
+### DB in Container
+6. set up docker-compose file for building postgres db and pgAdmin
 
 
 
 ## Reference
 1. https://www.youtube.com/watch?v=8ZPsZBcue50 : guiding me to build basic CRUD spring boot project
 2. https://dzone.com/articles/bounty-spring-boot-and-postgresql-database : setup to connect with postgres db
-3. 
+3. https://www.udemy.com/course/docker-tutorial-for-devops-run-docker-containers/learn/lecture/6466750?start=180#overview for building docker concept  
