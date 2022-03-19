@@ -29,6 +29,7 @@ Get more understanding in Spring Boot
                       .build()
       );
    ```
+   Instead of try-catch error in the controller, try to use @ControllerAdvice to handle the customized Exception
    
 ### DB in Container
 6. set up docker-compose file for building postgres db and pgAdmin
